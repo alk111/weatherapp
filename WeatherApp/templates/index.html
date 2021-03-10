@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <b>Weather App</b>
+    <br>
+    <br>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" name="submit" value="Search">
+    </form>
+
+    {% if weather %}
+        <img src="https://openweathermap.org/img/w/{{icon}}.png"><br>
+        {{name}},{{country}} <br>
+        {{weather}} <br>
+        {{temp}} <br>
+    {% else %}
+
+        <p>Data not found</p>
+    
+    {% endif %}
+    <p>weather forecast</p>
+    {% if selectedForecast %}
+    {% for data in selectedForecast %}
+
+        {{data.time}} <br>
+        {{data.temp}} <br>
+        {{data.weather}} <br>
+
+    {% endfor %}
+    
+    {% else %}
+
+        <p>No Forecast data available</p>
+    
+    {% endif %}
+</body>
+</html>
